@@ -24,17 +24,21 @@ public class NewsActivity extends AppCompatActivity
 
     private static final String LOG_TAG = NewsActivity.class.getName();
 
-    /** URL for earthquake data from the USGS dataset */
-    private static final String USGS_REQUEST_URL =
+    /**
+     * URL for news data from the Guardian dataset
+     */
+    private static final String GUARDIAN_REQUEST_URL =
             "https://content.guardianapis.com/search?api-key=4a606d8a-f845-41e4-9bc9-5ecd439829c5 ";
 
     /**
-     * Constant value for the earthquake loader ID. We can choose any integer.
+     * Constant value for the news loader ID. We can choose any integer.
      * This really only comes into play if you're using multiple loaders.
      */
     private static final int NEWS_LOADER_ID = 1;
 
-    /** Adapter for the list of earthquakes */
+    /**
+     * Adapter for the list of news
+     */
     private NewsAdapter mAdapter;
 
     private TextView mEmptyStateTextView;
@@ -46,9 +50,9 @@ public class NewsActivity extends AppCompatActivity
 
 
         // Find a reference to the {@link ListView} in the layout
-        ListView newsListView = (ListView) findViewById(R.id.list);
+        ListView newsListView = findViewById(R.id.list);
 
-        // Create a new adapter that takes an empty list of earthquakes as input
+        // Create a new adapter that takes an empty list of news as input
         mAdapter = new NewsAdapter(this, new ArrayList<News>());
 
         // Set the adapter on the {@link ListView}
@@ -56,7 +60,7 @@ public class NewsActivity extends AppCompatActivity
         newsListView.setAdapter(mAdapter);
 
         // Set an item click listener on the ListView, which sends an intent to a web browser
-        // to open a website with more information about the selected earthquake.
+        // to open a website with more information about the selected news.
         newsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -66,7 +70,7 @@ public class NewsActivity extends AppCompatActivity
                 // Convert the String URL into a URI object (to pass into the Intent constructor)
                 Uri newsUri = Uri.parse(currentNews.getWebUrl());
 
-                // Create a new intent to view the earthquake URI
+                // Create a new intent to view the news URI
                 Intent websiteIntent = new Intent(Intent.ACTION_VIEW, newsUri);
 
                 // Send the intent to launch a new activity
@@ -99,14 +103,14 @@ public class NewsActivity extends AppCompatActivity
         }
 
 
-        mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
+        mEmptyStateTextView = findViewById(R.id.empty_view);
         newsListView.setEmptyView(mEmptyStateTextView);
     }
 
     @Override
     public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
         // Create a new loader for the given URL
-        return new NewsLoader(this, USGS_REQUEST_URL);
+        return new NewsLoader(this, GUARDIAN_REQUEST_URL);
     }
 
     @Override
@@ -118,7 +122,7 @@ public class NewsActivity extends AppCompatActivity
 
         mEmptyStateTextView.setText(R.string.no_news);
 
-        // Clear the adapter of previous earthquake data
+        // Clear the adapter of previous news
         mAdapter.clear();
 
         // If there is a valid list of {@link News}s, then add them to the adapter's

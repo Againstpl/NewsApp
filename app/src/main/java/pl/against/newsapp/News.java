@@ -7,23 +7,31 @@ public class News {
 
     private double m;
 
-    /** Location of the earthquake */
+    /**
+     * Title of the news
+     */
     private String mWebTitle;
 
-    /** Time of the earthquake */
-    private long mWebPublicationDate;
+    /**
+     * Date of publication
+     */
+    private String mWebPublicationDate;
 
-    /** Website URL of the earthquake */
+    /**
+     * Name of the news section
+     */
     private String mSectionName;
 
-    /** Website URL of the earthquake */
+    /**
+     * Website URL of the news
+     */
     private String mWebUrl;
 
 
     /**
      * Constructs a new {@link News} object.
      */
-    public News(String webTitle, long webPublicationDate, String sectionName, String webUrl) {
+    public News(String webTitle, String webPublicationDate, String sectionName, String webUrl) {
         mWebTitle = webTitle;
         mWebPublicationDate = webPublicationDate;
         mSectionName = sectionName;
@@ -32,28 +40,28 @@ public class News {
     }
 
     /**
-     * Returns the magnitude of the earthquake.
+     * Returns the title of the news.
      */
     public String getWebTitle() {
         return mWebTitle;
     }
 
     /**
-     * Returns the location of the earthquake.
+     * Returns the publication date.
      */
-    public long getWebPublicationDate() {
+    public String getWebPublicationDate() {
         return mWebPublicationDate;
     }
 
     /**
-     * Returns the time of the earthquake.
+     * Returns the name of the news section.
      */
     public String getSectionName() {
         return mSectionName;
     }
 
     /**
-     * Returns the website URL to find more information about the earthquake.
+     * Returns the website URL to find more information about the news.
      */
     public String getWebUrl() {
         return mWebUrl;
