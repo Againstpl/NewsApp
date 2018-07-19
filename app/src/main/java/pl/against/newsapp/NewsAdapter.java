@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- * An {@link NewsAdapter} knows how to create a list item layout for each earthquake
+ * An {@link NewsAdapter} knows how to create a list item layout for each news
  * in the data source (a list of {@link News} objects).
  *
  * These list item layouts will be provided to an adapter view like ListView
@@ -31,7 +31,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
     /**
      * Returns a list item view that displays information about the news at the given position
-     * in the list of earthquakes.
+     * in the list of news.
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -50,6 +50,10 @@ public class NewsAdapter extends ArrayAdapter<News> {
         // Find the TextView with view ID webtitle
         TextView webTitleView = listItemView.findViewById(R.id.webtitle);
         webTitleView.setText(webTitle);
+
+        String authorName = currentNews.getAuthorName();
+        TextView authorNameView = listItemView.findViewById(R.id.authorname);
+        authorNameView.setText(authorName);
 
         String sectionName = currentNews.getSectionName();
         TextView sectionNameView = listItemView.findViewById(R.id.sectionname);

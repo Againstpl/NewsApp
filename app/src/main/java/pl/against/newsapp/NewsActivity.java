@@ -22,13 +22,13 @@ import java.util.List;
 public class NewsActivity extends AppCompatActivity
         implements LoaderCallbacks<List<News>> {
 
-    private static final String LOG_TAG = NewsActivity.class.getName();
+    // private static final String LOG_TAG = NewsActivity.class.getName();
 
     /**
      * URL for news data from the Guardian dataset
      */
     private static final String GUARDIAN_REQUEST_URL =
-            "https://content.guardianapis.com/search?api-key=4a606d8a-f845-41e4-9bc9-5ecd439829c5 ";
+            "https://content.guardianapis.com/search?show-tags=contributor&api-key=4a606d8a-f845-41e4-9bc9-5ecd439829c5 ";
 
     /**
      * Constant value for the news loader ID. We can choose any integer.
@@ -52,6 +52,9 @@ public class NewsActivity extends AppCompatActivity
         // Find a reference to the {@link ListView} in the layout
         ListView newsListView = findViewById(R.id.list);
 
+        mEmptyStateTextView = findViewById(R.id.empty_view);
+        newsListView.setEmptyView(mEmptyStateTextView);
+
         // Create a new adapter that takes an empty list of news as input
         mAdapter = new NewsAdapter(this, new ArrayList<News>());
 
@@ -64,7 +67,7 @@ public class NewsActivity extends AppCompatActivity
         newsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                // Find the current earthquake that was clicked on
+                // Find the current news that was clicked on
                 News currentNews = mAdapter.getItem(position);
 
                 // Convert the String URL into a URI object (to pass into the Intent constructor)
@@ -103,8 +106,6 @@ public class NewsActivity extends AppCompatActivity
         }
 
 
-        mEmptyStateTextView = findViewById(R.id.empty_view);
-        newsListView.setEmptyView(mEmptyStateTextView);
     }
 
     @Override

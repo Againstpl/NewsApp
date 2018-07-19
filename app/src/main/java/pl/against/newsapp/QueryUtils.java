@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Helper methods related to requesting and receiving earthquake data from The Guardian.
+ * Helper methods related to requesting and receiving news data from The Guardian.
  */
 public final class QueryUtils {
 
@@ -35,15 +35,10 @@ public final class QueryUtils {
     }
 
     /**
-     * Query the USGS dataset and return a list of {@link News} objects.
+     * Query the Guardian dataset and return a list of {@link News} objects.
      */
     public static List<News> fetchNewsData(String requestUrl) {
 
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
         // Create URL object
         URL url = createUrl(requestUrl);
 
@@ -104,7 +99,7 @@ public final class QueryUtils {
                 Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
             }
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem retrieving the earthquake JSON results.", e);
+            Log.e(LOG_TAG, "Problem retrieving the news JSON results.", e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -158,12 +153,12 @@ public final class QueryUtils {
             // Create a JSONObject from the JSON response string
             JSONObject baseJsonResponse = new JSONObject(newsJSON);
 
-            // Extract the JSONArray associated with the key called "features",
-            // which represents a list of features (or news).
+            // Extract the JSONArray associated with the key called "response",
+            // which represents a list of news.
             JSONObject newsObj = baseJsonResponse.getJSONObject("response");
             JSONArray newsArray = newsObj.getJSONArray("results");
 
-            // For each earthquake in the newsArray, create an {@link News} object
+            // For each news in the newsArray, create an {@link News} object
             for (int i = 0; i < newsArray.length(); i++) {
 
                 JSONObject results = newsArray.getJSONObject(i);
@@ -180,9 +175,19 @@ public final class QueryUtils {
                 // Extract the value for the key called "url"
                 String webUrl = results.getString("webUrl");
 
-                // Create a new {@link News} object with the magnitude, location, time,
-                // and url from the JSON response.
-                News news1 = new News(webTitle, webPublicationDate, sectionName, webUrl);
+                //Extract the JSONArray with the key "tag"
+                JSONArray tagsArray = results.getJSONArray("tags");
+
+                //Declare String variable to hold author name
+                String authorName = null;
+
+                if (tagsArray.length() == 1) {
+                    JSONObject contributorTag = (JSONObject) tagsArray.get(0);
+                    authorName = contributorTag.getString("webTitle");
+                }
+
+                // Create a new {@link News} object from the JSON response.
+                News news1 = new News(webTitle, webPublicationDate, sectionName, webUrl, authorName);
 
                 // Add the new {@link News} to the list of news.
                 news.add(news1);
@@ -192,7 +197,7 @@ public final class QueryUtils {
             // If an error is thrown when executing any of the above statements in the "try" block,
             // catch the exception here, so the app doesn't crash. Print a log message
             // with the message from the exception.
-            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
+            Log.e("QueryUtils", "Problem parsing the news JSON results", e);
         }
 
         // Return the list of news

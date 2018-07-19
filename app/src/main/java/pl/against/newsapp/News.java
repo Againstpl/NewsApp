@@ -1,11 +1,10 @@
 package pl.against.newsapp;
 
 /**
- * An {@link News} object contains information related to a single earthquake.
+ * An {@link News} object contains information related to a single news.
  */
 public class News {
 
-    private double m;
 
     /**
      * Title of the news
@@ -27,15 +26,21 @@ public class News {
      */
     private String mWebUrl;
 
+    /**
+     * Author of the news
+     */
+    private String mAuthorName;
+
 
     /**
      * Constructs a new {@link News} object.
      */
-    public News(String webTitle, String webPublicationDate, String sectionName, String webUrl) {
+    public News(String webTitle, String webPublicationDate, String sectionName, String webUrl, String authorName) {
         mWebTitle = webTitle;
         mWebPublicationDate = webPublicationDate;
         mSectionName = sectionName;
         mWebUrl = webUrl;
+        mAuthorName = authorName;
 
     }
 
@@ -65,5 +70,12 @@ public class News {
      */
     public String getWebUrl() {
         return mWebUrl;
+    }
+
+    /**
+     * Returns the title of the news.
+     */
+    public String getAuthorName() {
+        return mAuthorName;
     }
 }
