@@ -9,7 +9,7 @@
 
     <string name="settings_page_label">Page</string>
     <string name="settings_page_key" translatable="false">page</string>
-    <string name="settings_page_default" translatable="false">0</string>
+    <string name="settings_page_default" translatable="false">1</string>
 
     <string name="settings_section_label">Section</string>
     <string name="settings_section_key" translatable="false">section</string>
@@ -29,8 +29,26 @@
     <string name="settings_order_by_most_recent_value" translatable="false">time</string>
 
 
-    <string name="settings_order_by_section_label">Section</string>
-    <string name="settings_order_by_section_value" translatable="false">section</string>
+    <string name="settings_section_all_label">All</string>
+    <string name="settings_section_all_value" translatable="false">all</string>
 
+
+    <string name="settings_section_world_label">World news</string>
+    <string name="settings_section_world_value" translatable="false">world</string>
+
+    <string name="settings_section_sport_label">Sport</string>
+    <string name="settings_section_sport_value" translatable="false">sport</string>
+
+    <string name="settings_section_business_label">Business</string>
+    <string name="settings_section_business_value" translatable="false">business</string>
+
+    <string name="settings_section_news_label">News</string>
+    <string name="settings_section_news_value" translatable="false">news</string>
+
+    <string name="settings_section_science_label">Science</string>
+    <string name="settings_section_science_value" translatable="false">science</string>
+
+    <string name="settings_section_arts_label">Travel</string>
+    <string name="settings_section_arts_value" translatable="false">travel</string>
 
 </resources>
