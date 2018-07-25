@@ -136,7 +136,7 @@ public class NewsActivity extends AppCompatActivity
         uriBuilder.appendQueryParameter("format", "json");
         uriBuilder.appendQueryParameter("page-size", page);
         uriBuilder.appendQueryParameter("show-tags", "contributor");
-        uriBuilder.appendQueryParameter("orderby", orderBy);
+        uriBuilder.appendQueryParameter("order-by", orderBy);
 
         if (!section.equals(getString(R.string.settings_section_default))) {
             uriBuilder.appendQueryParameter("section", section);

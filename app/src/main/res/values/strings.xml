@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">News App</string>
+    <string name="app_name">The Guardian News</string>
 
     <string name="no_news">No news available found, please come back later and try again!</string>
     <string name="no_internet_connection">No internet connection. Try again.</string>
@@ -13,20 +13,18 @@
 
     <string name="settings_section_label">Section</string>
     <string name="settings_section_key" translatable="false">section</string>
-    <string name="settings_section_default" translatable="false">section</string>
+    <string name="settings_section_default" translatable="false">all</string>
 
-    <!-- Strings For Order-By Preference [CHAR LIMIT=30] -->
+
     <string name="settings_order_by_label">Order By</string>
-    <string name="settings_order_by_key" translatable="false">order_by</string>
-    <string name="settings_order_by_default" translatable="false">@string/settings_order_by_time_value</string>
+    <string name="settings_order_by_key" translatable="false">order-by</string>
+    <string name="settings_order_by_default" translatable="false">@string/settings_order_by_newest_value</string>
 
-    <!-- Label for order-by oldest option [CHAR LIMIT=20] -->
-    <string name="settings_order_by_time_label">Oldest</string>
-    <string name="settings_order_by_time_value" translatable="false">oldest</string>
+    <string name="settings_order_by_newest_label">Newest</string>
+    <string name="settings_order_by_newest_value" translatable="false">newest</string>
 
-    <!-- Label for order-by most recent option [CHAR LIMIT=20] -->
-    <string name="settings_order_by_most_recent_label">Most Recent</string>
-    <string name="settings_order_by_most_recent_value" translatable="false">time</string>
+    <string name="settings_order_by_oldest_label">Oldest</string>
+    <string name="settings_order_by_oldest_value" translatable="false">oldest</string>
 
 
     <string name="settings_section_all_label">All</string>
